@@ -133,8 +133,18 @@ const MainNav = ({ onScrollToSection }) => {
                         horizontal: "right",
                     }}
                 >
-                    <MenuItem onClick={handleMenuClose}>프로젝트 경력</MenuItem>
-                    <MenuItem onClick={handleMenuClose}>자격증</MenuItem>
+                    <MenuItem onClick={
+                        () => {
+                        handleMenuClose()
+                        onScrollToSection("experience")
+                    }
+                    }>프로젝트 경력
+                    </MenuItem>
+                    <MenuItem onClick={
+                        () => {
+                            handleMenuClose()
+                            onScrollToSection("certifications")
+                        }}>자격증</MenuItem>
                 </Menu>
             </Toolbar>
         </AppBar>
