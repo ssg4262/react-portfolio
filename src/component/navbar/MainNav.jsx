@@ -59,7 +59,7 @@ const MainNav = ({ onScrollToSection }) => {
     }, []);
 
     const handleMenuClose = useCallback(() => {
-        setAnchorEl(null);
+        setAnchorEl(null); // 메뉴 닫기
     }, []);
 
     return (
@@ -135,15 +135,15 @@ const MainNav = ({ onScrollToSection }) => {
                 >
                     <MenuItem onClick={
                         () => {
-                            onScrollToSection("experience")
-                            handleMenuClose()
-                    }
+                            handleMenuClose(); // 메뉴 닫기
+                            setTimeout(() =>  onScrollToSection("experience"), 100);
+                        }
                     }>프로젝트 경력
                     </MenuItem>
                     <MenuItem onClick={
-                        () => {          
-                            onScrollToSection("certifications")
-                            handleMenuClose()
+                        () => {
+                            handleMenuClose(); // 메뉴 닫기
+                            setTimeout(() =>  onScrollToSection("certifications"), 100);
                         }}>자격증</MenuItem>
                 </Menu>
             </Toolbar>
