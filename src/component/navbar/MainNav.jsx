@@ -87,7 +87,11 @@ const MainNav = ({ onScrollToSection }) => {
                 </Search>
 
                 {/* 메뉴 항목 */}
-                <Box sx={{ display: "flex", marginLeft: "auto", gap: 2 }}>
+                <Box sx={{
+                    display: { xs: "none", sm: "flex" }, // xs(작은 화면)에서는 숨기고, sm(640px 이상)에서는 flex로 보임
+                    marginLeft: "auto", 
+                    gap: 2 
+                }}>
                     <Button
                         sx={{ color: "#000", "&:hover": { color: "#808080" } }}
                         onClick={() => onScrollToSection("experience")}  // 경험 섹션으로 스크롤
