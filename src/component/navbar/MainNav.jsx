@@ -135,15 +135,15 @@ const MainNav = ({ onScrollToSection }) => {
                 >
                     <MenuItem onClick={
                         () => {
-                        handleMenuClose()
-                        onScrollToSection("experience")
+                            onScrollToSection("experience")
+                            handleMenuClose()
                     }
                     }>프로젝트 경력
                     </MenuItem>
                     <MenuItem onClick={
-                        () => {
-                            handleMenuClose()
+                        () => {          
                             onScrollToSection("certifications")
+                            handleMenuClose()
                         }}>자격증</MenuItem>
                 </Menu>
             </Toolbar>
