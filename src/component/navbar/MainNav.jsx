@@ -2,8 +2,6 @@ import React, { useState, useCallback } from "react";
 import AppBar from "@mui/material/AppBar";
 import Toolbar from "@mui/material/Toolbar";
 import Typography from "@mui/material/Typography";
-import InputBase from "@mui/material/InputBase";
-import { styled, alpha } from "@mui/material/styles";
 import Box from "@mui/material/Box";
 import Button from "@mui/material/Button";
 import IconButton from "@mui/material/IconButton";
@@ -11,49 +9,14 @@ import Menu from "@mui/material/Menu";
 import MenuItem from "@mui/material/MenuItem";
 import MenuIcon from "@mui/icons-material/Menu";
 import SearchIcon from "@mui/icons-material/Search";
-
-const Search = styled("div")(({ theme }) => ({
-    position: "relative",
-    borderRadius: theme.shape.borderRadius,
-    backgroundColor: alpha(theme.palette.common.white, 0.15),
-    "&:hover": {
-        backgroundColor: alpha(theme.palette.common.white, 0.25),
-    },
-    marginLeft: theme.spacing(1),
-    width: "100%",
-    [theme.breakpoints.up("sm")]: {
-        marginLeft: theme.spacing(3),
-        width: "auto",
-    },
-}));
-
-const SearchIconWrapper = styled("div")(({ theme }) => ({
-    padding: theme.spacing(0, 2),
-    height: "100%",
-    position: "absolute",
-    pointerEvents: "none",
-    display: "flex",
-    alignItems: "center",
-    justifyContent: "center",
-}));
-
-const StyledInputBase = styled(InputBase)(({ theme }) => ({
-    color: "#000",  // 텍스트 색을 검정으로 설정
-    "& .MuiInputBase-input": {
-        padding: theme.spacing(1, 1, 1, 0),
-        paddingLeft: `calc(1em + ${theme.spacing(4)})`,
-        transition: theme.transitions.create("width"),
-        width: "100%",
-        [theme.breakpoints.up("md")]: {
-            width: "20ch",
-        },
-    },
-}));
+import SearchBar from "../common/input/SearchBar.jsx";
+import SearchIconWrapper from "../common/wrapper/SearchIconWrapper.jsx";
+import StyledInputBase from "../common/input/StyledInputBase.jsx";
 
 const MainNav = ({ onScrollToSection }) => {
     const [anchorEl, setAnchorEl] = useState(null);
     const isMenuOpen = Boolean(anchorEl);
-
+    const [searchText,setSearchText] = useState('')
     const handleMenuOpen = useCallback((event) => {
         setAnchorEl(event.currentTarget);
     }, []);
@@ -76,19 +39,21 @@ const MainNav = ({ onScrollToSection }) => {
                 </Typography>
 
                 {/* 검색창 */}
-                <Search>
+                <SearchBar>
                     <SearchIconWrapper>
                         <SearchIcon sx={{ color: "#000" }} />
                     </SearchIconWrapper>
                     <StyledInputBase
                         placeholder="Search…"
                         inputProps={{ "aria-label": "search" }}
+                        value={searchText}
+                        onChange={(e) => setSearchText(e.target.value)}
                     />
-                </Search>
+                </SearchBar>
 
                 {/* 메뉴 항목 */}
                 <Box sx={{
-                    display: { xs: "none", sm: "flex" }, // xs(작은 화면)에서는 숨기고, sm(640px 이상)에서는 flex로 보임
+                    display: { sm: "flex" },
                     marginLeft: "auto", 
                     gap: 2 
                 }}>
@@ -138,13 +103,13 @@ const MainNav = ({ onScrollToSection }) => {
                             handleMenuClose(); // 메뉴 닫기
                             setTimeout(() =>  onScrollToSection("experience"), 100);
                         }
-                    }>프로젝트 경력
+                    }>자기소개
                     </MenuItem>
                     <MenuItem onClick={
                         () => {
                             handleMenuClose(); // 메뉴 닫기
                             setTimeout(() =>  onScrollToSection("certifications"), 100);
-                        }}>자격증</MenuItem>
+                        }}>Blog 게시글</MenuItem>
                 </Menu>
             </Toolbar>
         </AppBar>

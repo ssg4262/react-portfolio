@@ -1,7 +1,11 @@
 const MainBody = () => {
     
     return (
-        <>
+        <div
+            style={{
+                padding: "20px 20px",
+            }}
+        >
             <h2>프로젝트 경력</h2>
             <div className="card-container">
                 <div className="card">
@@ -495,7 +499,7 @@ const MainBody = () => {
                     </div>
                 </div>
             </div>
-        </>
+        </div>
     )
 }
 
